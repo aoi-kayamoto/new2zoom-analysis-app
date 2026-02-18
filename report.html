@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分析レポート - Zoom録画分析</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <h1>📊 分析レポート</h1>
+
+        <!-- Summary Section -->
+        <section class="card mb-lg">
+            <h2>サマリー</h2>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-label">総時間</div>
+                    <div class="metric-value" id="totalDuration">--</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">コーチ発話時間</div>
+                    <div class="metric-value" id="coachTime">--</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">受講生発話時間</div>
+                    <div class="metric-value" id="studentTime">--</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">コーチ最長連続発話</div>
+                    <div class="metric-value" id="coachLongest">--</div>
+                </div>
+            </div>
+
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-lg); margin-top: var(--spacing-xl);">
+                <div>
+                    <h3>発話割合</h3>
+                    <canvas id="ratioChart" width="300" height="300"></canvas>
+                </div>
+                <div>
+                    <h3>声かけの質</h3>
+                    <canvas id="categoryChart" width="300" height="300"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Coach Quality Section -->
+        <section class="card mb-lg">
+            <h2>コーチの声かけの質</h2>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-label">共感</div>
+                    <div class="metric-value" style="color: var(--empathy-color);" id="empathyCount">--</div>
+                    <div class="metric-label" id="empathyRate">受講生1分あたり: --</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">承認</div>
+                    <div class="metric-value" style="color: var(--acknowledgement-color);" id="acknowledgementCount">--
+                    </div>
+                    <div class="metric-label" id="acknowledgementRate">受講生1分あたり: --</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">自走促進</div>
+                    <div class="metric-value" style="color: var(--autonomy-color);" id="autonomyCount">--</div>
+                    <div class="metric-label" id="autonomyRate">受講生1分あたり: --</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Examples Section -->
+        <section class="card mb-lg">
+            <h2>該当発話例</h2>
+
+            <div style="margin-bottom: var(--spacing-md);">
+                <label style="color: var(--text-secondary); margin-right: var(--spacing-md);">カテゴリで絞り込み:</label>
+                <select id="categoryFilter" style="width: auto; display: inline-block;">
+                    <option value="all">すべて</option>
+                    <option value="empathy">共感</option>
+                    <option value="acknowledgement">承認</option>
+                    <option value="autonomy">自走促進</option>
+                    <option value="other">その他</option>
+                </select>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>時刻</th>
+                        <th>発話内容</th>
+                        <th>カテゴリ</th>
+                        <th>編集</th>
+                    </tr>
+                </thead>
+                <tbody id="examplesTable">
+                    <!-- Examples will be inserted here -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Export Section -->
+        <section class="card text-center">
+            <h2>エクスポート</h2>
+            <button id="exportCsvBtn" class="btn btn-primary">
+                📥 CSV出力
+            </button>
+        </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+    <script src="js/report.js"></script>
+</body>
+
+</html>

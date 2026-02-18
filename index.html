@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoom録画分析 - アップロード</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <h1>📊 Zoom録画分析</h1>
+
+        <div class="card">
+            <h2>ファイルをアップロード</h2>
+            <p style="color: var(--text-secondary); margin-bottom: var(--spacing-lg);">
+                1on1面談のZoom録画ファイルをアップロードしてください。<br>
+                対応形式: MP4, M4A, MP3, WAV
+            </p>
+
+            <div id="dropzone" class="dropzone">
+                <p>📁 ファイルをドラッグ&ドロップ</p>
+                <p style="font-size: 0.875rem; color: var(--text-muted);">または</p>
+                <button class="btn btn-primary" onclick="document.getElementById('fileInput').click()">
+                    ファイルを選択
+                </button>
+                <input type="file" id="fileInput" accept=".mp4,.m4a,.mp3,.wav,.avi,.mov">
+            </div>
+
+            <!-- Selected file info and start button -->
+            <div id="fileInfoContainer" class="hidden"
+                style="margin-top: var(--spacing-lg); padding: var(--spacing-lg); background: rgba(99, 102, 241, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(99, 102, 241, 0.3);">
+                <p style="color: var(--text-secondary); margin-bottom: var(--spacing-sm);">選択されたファイル:</p>
+                <p id="fileName"
+                    style="color: var(--text-primary); font-weight: 600; margin-bottom: var(--spacing-lg);"></p>
+                <button id="startBtn" class="btn btn-primary" style="width: 100%;">
+                    🔍 分析開始
+                </button>
+            </div>
+
+            <div id="progressContainer" class="progress-container hidden">
+                <div class="progress-bar">
+                    <div id="progressFill" class="progress-fill"></div>
+                </div>
+                <p id="statusText" class="status-text">処理中...</p>
+            </div>
+        </div>
+
+        <div class="card mt-lg" style="background: rgba(99, 102, 241, 0.05); border-color: rgba(99, 102, 241, 0.3);">
+            <h3>💡 使い方</h3>
+            <ol style="color: var(--text-secondary); line-height: 1.8;">
+                <li>Zoom録画ファイルをアップロード</li>
+                <li>音声を自動で文字起こし・話者分離</li>
+                <li>話者（コーチ/受講生）を確認</li>
+                <li>分析レポートを表示</li>
+            </ol>
+        </div>
+    </div>
+
+    <script src="js/upload.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>話者確認 - Zoom録画分析</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <h1>🎤 話者を確認</h1>
+
+        <p style="color: var(--text-secondary); margin-bottom: var(--spacing-xl);">
+            それぞれの話者がコーチか受講生かを選択してください。
+        </p>
+
+        <div id="speakerGrid" class="speaker-grid">
+            <!-- Speaker cards will be inserted here -->
+        </div>
+
+        <div class="text-center">
+            <button id="confirmBtn" class="btn btn-primary" disabled>
+                確定して分析を開始
+            </button>
+        </div>
+
+        <div id="loadingContainer" class="hidden text-center mt-lg">
+            <div class="spinner"></div>
+            <p class="status-text">分析中...</p>
+        </div>
+    </div>
+
+    <script src="js/assign.js"></script>
+</body>
+
+</html>
