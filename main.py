@@ -1,4 +1,4 @@
-from fastapi import FastAPI, File, UploadFile, HTTPException, Response
+from fastapi import FastAPI, File, UploadFile, HTTPException, Response, Form
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
@@ -430,9 +430,15 @@ async def health_check():
 
 
 if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
-from fastapi import FastAPI, File, UploadFile, HTTPException, Response, Form
+@app.post("/analyze")
+async def analyze(file: UploadFile = File(...), language: str = Form("ja")):
+    """
+    フロント互換: /analyze に投げられたら
+    /api/upload → /api/process を内部で順番に呼んで返す
+    """
+    upload_result = await upload_file(file)
+    session_id = upload_result["session_id"]
+    return await process_audio(session_id=session_id, language=language)
 @app.post("/analyze")
 async def analyze(file: UploadFile = File(...), language: str = Form("ja")):
     """
